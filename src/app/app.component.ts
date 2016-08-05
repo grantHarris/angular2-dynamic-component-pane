@@ -12,46 +12,40 @@ export class AppComponent {
 	layout: Object;
 	constructor(){
 		this.layout = {
-			"type": "Container",
-			"configuration":{
-				"arrangement": "row",
-				"children": [{
-					"type": "Container",
-					"configuration":{
-						"arrangement": "col",
-						"children": [
-							{
-								"type": "PieChart",
-								"configuration": {
-									"data": [1,2,3,4]
-								}
-							}
-						]
-					}
-				},
-			{
-					"type": "Container",
-					"configuration":{
-						"arrangement": "col",
-						"children": [
-							{
-								"type": "BarChart",
-								"configuration": {
-									"data": [55,66,77,88]
-									
-								}
-							},
-												{
-								"type": "PieChart",
-								"configuration": {
-									"data": [99,88,77]
+		    "type": "Container",
+		    "configuration": {
+		        "class": "row",
+		        "children": [{
+		            "type": "Container",
+		            "configuration": {
+		                "class": "col-xs-12",
+		                "children": [{
+		                    "type": "PieChart",
+		                    "configuration": {
+		                        "data": [1, 2, 3, 4]
+		                    }
+		                }]
+		            }
+		        }, {
+		            "type": "Container",
+		            "configuration": {
+		                "class": "col-xs-6",
+		                "children": [{
+		                    "type": "BarChart",
+		                    "configuration": {
+		                        "data": [55, 66, 77, 88]
 
-								}
-							}
-						]
-					}
-				}]
-			}
+		                    }
+		                }, {
+		                    "type": "PieChart",
+		                    "configuration": {
+		                        "data": [99, 88, 77]
+
+		                    }
+		                }]
+		            }
+		        }]
+		    }
 		};
 	}
 }
