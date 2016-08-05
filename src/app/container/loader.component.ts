@@ -1,5 +1,4 @@
-import { Component, DynamicComponentLoader, ViewContainerRef } from '@angular/core';
-
+import {Component, ComponentResolver, ComponentFactory, ComponentRef, ViewContainerRef} from '@angular/core'
 import { MyContainerComponent } from './container.component'
 import { MyPlaceholderComponent } from './placeholder.component'
 
@@ -12,16 +11,20 @@ import { MyPlaceholderComponent } from './placeholder.component'
 export class MyLoaderComponent {
 
   public component: Object;
-  private dcl: DynamicComponentLoader;
-  private viewContainerRef: ViewContainerRef;
+  private componentRef:ComponentRef<any>;
+  private isViewInitialized:boolean = false;
 
+  constructor(private viewContainerRef: ViewContainerRef, private resolver: ComponentResolver) {}
+  
+  updateComponent(){
+    if(!this.isViewInitialized) {
+      return;
+    }
 
-  constructor(dcl: DynamicComponentLoader, viewContainerRef: ViewContainerRef) {
-    this.dcl = dcl;
-    this.viewContainerRef = viewContainerRef;
-  }
+    if(this.componentRef) {
+      this.componentRef.destroy();
+    }
 
-  ngAfterContentInit(){
     // Replace with some sort of service
     let mappings = {
       'Container': MyContainerComponent,
@@ -29,10 +32,25 @@ export class MyLoaderComponent {
       'BarChart': MyPlaceholderComponent
     };
 
-    this.dcl.loadNextToLocation(mappings[this.component['type']], this.viewContainerRef).then(componentRef=> {
-      componentRef.instance.configuration = this.component['configuration'];
+     this.resolver.resolveComponent(mappings[this.component['type']]).then((factory:ComponentFactory<any>) => {
+      this.componentRef = this.viewContainerRef.createComponent(factory)
+      this.componentRef.instance.configuration = this.component['configuration'];
     });
-
   }
 
+  ngOnChanges() {
+    this.updateComponent();
+  }
+
+  ngAfterViewInit() {
+    this.isViewInitialized = true;
+    this.updateComponent();  
+  }
+
+  ngOnDestroy() {
+    if(this.componentRef) {
+      this.componentRef.destroy();
+    }    
+  }
+  
 }
