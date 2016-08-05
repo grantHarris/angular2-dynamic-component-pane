@@ -7,10 +7,7 @@ import { MyLoaderComponent } from './loader.component'
   inputs: ['configuration'],
   directives: [MyContainerComponent, MyLoaderComponent],
   template: `
-  	<div *ngIf="configuration.arrangement === 'row'" class="row">
-  		<my-loader [component]="child" *ngFor="let child of configuration.children"></my-loader>
-  	</div>
-  	<div *ngIf="configuration.arrangement === 'col'" class="col-xs-6">
+  	<div ngClass="{{configuration.class}}">
   		<my-loader [component]="child" *ngFor="let child of configuration.children"></my-loader>
   	</div>
   `
