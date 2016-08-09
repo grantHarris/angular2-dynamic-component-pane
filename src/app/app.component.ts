@@ -18,28 +18,35 @@ export class AppComponent {
 		        "children": [{
 		            "type": "Container",
 		            "configuration": {
-		                "class": "col-xs-12",
+		                "class": "col-xs-2",
 		                "children": [{
-		                    "type": "PieChart",
+		                    "type": "TaskTypes",
 		                    "configuration": {
-		                        "data": [1, 2, 3, 4]
+		                        "data": "Task types here"
+
 		                    }
 		                }]
 		            }
-		        }, {
+		        },{
 		            "type": "Container",
 		            "configuration": {
-		                "class": "col-xs-6",
+		                "class": "col-xs-2",
 		                "children": [{
-		                    "type": "BarChart",
+		                    "type": "TaskList",
 		                    "configuration": {
-		                        "data": [55, 66, 77, 88]
+		                        "data": "Task list here"
 
 		                    }
-		                }, {
-		                    "type": "PieChart",
+		                }]
+		            }
+		        },{
+		            "type": "Container",
+		            "configuration": {
+		                "class": "col-xs-8",
+		                "children": [{
+		                    "type": "TaskItem",
 		                    "configuration": {
-		                        "data": [99, 88, 77]
+		                        "data": "Task item here"
 
 		                    }
 		                }]

@@ -28,8 +28,9 @@ export class MyLoaderComponent {
     // Replace with some sort of service
     let mappings = {
       'Container': MyContainerComponent,
-      'PieChart': MyPlaceholderComponent,
-      'BarChart': MyPlaceholderComponent
+      'TaskTypes': MyPlaceholderComponent,
+      'TaskList': MyPlaceholderComponent,
+      'TaskItem': MyPlaceholderComponent,
     };
 
      this.resolver.resolveComponent(mappings[this.component['type']]).then((factory:ComponentFactory<any>) => {
